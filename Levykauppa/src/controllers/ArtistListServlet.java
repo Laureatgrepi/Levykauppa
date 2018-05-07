@@ -24,9 +24,9 @@ public class ArtistListServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		List<Artist> artists = artistDAO.findAllArtists();
 		
-		for(Artist a: artists){
-			writer.println(a.getName());
-		}
+		request.setAttribute("artists", artists);
+		
+	request.getRequestDispatcher("/WEB-INF/views/artistList.jsp").include(request,response);
 		
 	}
 

@@ -3,11 +3,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Otsikko</title>
+<title>Testi</title>
 </head>
-<body>
-Moikka<br>
-<c:out value="${param.name }"/>
+<body>Moikka<br>
+
+
+<c:if test="${param.name!=null }">
+	<h1>
+	Hello <c:out value="${param.name}"/>
+	</h1>
+</c:if>
+
+
 
 </body>
 </html>
