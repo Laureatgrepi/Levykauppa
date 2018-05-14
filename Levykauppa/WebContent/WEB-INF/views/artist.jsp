@@ -11,8 +11,9 @@
 </head>
 <body>
 
-<h1><c:out value="${artist.getName() }" ></h1>
+<h1><c:out value="${artist.getName() }" /></h1>
 
-</c:out> 
+<a href="/Levykauppa/AlbumListServlet?id=${artist.getId() }">Albumit</a>
+
 </body>
 </html>

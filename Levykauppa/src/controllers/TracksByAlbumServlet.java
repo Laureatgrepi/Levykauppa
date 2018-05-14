@@ -28,10 +28,10 @@ public class TracksByAlbumServlet extends HttpServlet {
 		
 		List<Track> tracks = trackDAO.findTracksByAlbum(album);
 		
-		for(Track t:tracks){
-			writer.println(t.getName());
-		}
+		request.setAttribute("album", album);
+		request.setAttribute("tracks", tracks);
 		
+		request.getRequestDispatcher("/WEB-INF/views/trackList.jsp").include(request,response);
 
 		
 	}

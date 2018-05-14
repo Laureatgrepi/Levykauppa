@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import db.AlbumDAO;
 import models.Album;
+import models.Artist;
 
 
 @WebServlet("/albumsByTitle")
@@ -25,14 +26,25 @@ public class AlbumsByTitleServlet extends HttpServlet {
 
 		String title = request.getParameter("title");
 		
-		PrintWriter writer = response.getWriter();
 		List<Album> albums = albumDAO.findAlbumsByTitle(title);
 		
-		for(Album a:albums){
-			writer.println(a.getTitle());
+		request.setAttribute("albums", albums);
+		request.getRequestDispatcher("/WEB-INF/views/haeAlbumi.jsp").include(request,response);
+
+		
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String albuminNimi = request.getParameter("albuminNimi");
+		if(albuminNimi==null || "".equals(albuminNimi)){
+			request.setAttribute("error", "No Name Given");
+			doGet(request, response);
+			
+		}else{
+			List<Album> albumit = albumDAO.findAlbumsByTitle(albuminNimi);
+			
+			response.sendRedirect("/Levykauppa/tracksByAlbum?id="+albumit.get(0).getAlbumId());
 			
 		}
-		
 	}
 
 

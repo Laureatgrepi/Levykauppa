@@ -31,9 +31,9 @@ public class AlbumByArtistIdServlet extends HttpServlet {
 		
 		 List<Album> albums = albumDAO.findAlbumByArtistId(artist);
 		 
-		 for(Album a: albums){
-			 writer.println(a.getTitle());
-		 }
+		request.setAttribute("albums", albums);
+		
+		request.getRequestDispatcher("/WEB-INF/views/albumList.jsp").include(request,response);
 		
 	}
 
